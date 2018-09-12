@@ -19,7 +19,7 @@ d = lambda n, a, r: r*(1 + a**(n+1))
 thtot = lambda n, a: 0 if n == 0 else th(n,a) + th(n-1,a)
 
 # position of center of nth circle, shrink factor a, base circle radius r
-pos = def(n, a, r):
+def pos(n, a, r):
     r = d(n, a, r)  # get distance to center
     angle = thtot(n,a)  # angle to center
     return (r*cos(angle), r*sin(angle))
