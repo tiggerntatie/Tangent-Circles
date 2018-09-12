@@ -34,7 +34,8 @@ Circle((0,0), (r,0))
 
 # draw the children
 for n in range(circleqty):
-    Circle(pos(n, a, r), r*a**(n+1))
+    center = pos(n, a, r)
+    Circle(center, (center[0]+r*a**(n+1), center[1]))
 
 
 app = MathApp()
