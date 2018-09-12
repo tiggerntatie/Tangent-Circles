@@ -30,7 +30,7 @@ r = 2
 angle = 0
 
 # draw the base circle
-Circle((0,0), r)
+Circle((0,0), (r,0))
 
 # draw the children
 for n in range(circleqty):
