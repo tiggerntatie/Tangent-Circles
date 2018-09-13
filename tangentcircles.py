@@ -29,26 +29,24 @@ def pos(n, a, r):
 def opt(n, a):
     return thtot(n, a) + thlast(n, a) - 2*pi
 
-def optimize(n, opt, guess1, guess2):
-    a = guess1
-    b = guess2
-    val = 1
-    while abs(val) > 1E-12:
-        c = (a*opt(n,b)-b*opt(n,a))/(opt(n,b)-opt(n,a))
-        a = b
-        b = c
-        val = opt(n,c)
-    return c
+def optimize(n, opt, a, b):
+    nb = opt(n,b)
+    while abs(nb) > 1E-12:
+        nb = opt(n,b)
+        na = opt(n,a)
+        b, a = (a*nb-b*na)/(nb-na), b
+    return b
 
 
-circleqty = 30
 
-print(optimize(circleqty, opt, .9, .99))
+circleqty = int(input("How many circles shall I show? "))
 
-
+# Figure out scale factor for given number of circles
 a = optimize(circleqty, opt, .9, .99)
+print("The scale factor for {} circles is {}".format(circleqty, a))
+
+# base circle radius, logical units
 r = 0.5
-angle = 0
 
 # draw the base circle
 Circle((0,0), r)
@@ -57,8 +55,6 @@ Circle((0,0), r)
 for n in range(1, circleqty+1):
     center = pos(n, a, r)
     Circle(center, r*a**n)
-
-print(thtot(circleqty, a) + thlast(circleqty, a) - 2*pi)
 
 
 app = MathApp()
