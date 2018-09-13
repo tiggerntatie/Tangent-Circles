@@ -33,7 +33,7 @@ def optimize(n, opt, guess1, guess2):
     a = guess1
     b = guess2
     val = 1
-    while abs(val) > 0.00000001:
+    while abs(val) > 1E-12:
         c = (a*opt(n,b)-b*opt(n,a))/(opt(n,b)-opt(n,a))
         a = b
         b = c
