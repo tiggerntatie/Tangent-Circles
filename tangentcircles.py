@@ -18,7 +18,7 @@ thlast = lambda n, a: acos(((1+a)**2+(1+a**n)**2-(a+a**n)**2)/(2*(1+a)*(1+a**n))
 d = lambda n, a, r: r*(1 + a**n)
 
 # total angle for center of nth circle (recursive)
-thtot = lambda n, a: 0 if n == 1 else th(n,a) + thtot(n-1,a)
+thtot = lambda n, a: 0 if n == 1 else th(n-1,a) + thtot(n-1,a)
 
 # position of center of nth circle, shrink factor a, base circle radius r
 def pos(n, a, r):
@@ -52,7 +52,7 @@ r = 0.5
 angle = 0
 
 # draw the base circle
-Circle((0.0,0.0), r)
+Circle((0,0), r)
 
 # draw the children
 for n in range(1, circleqty+1):
