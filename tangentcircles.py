@@ -47,7 +47,7 @@ circleqty = 7
 #print(optimize(circleqty, opt, .9, .99))
 
 
-a = 0.9485
+a = 0.9471
 r = 0.5
 angle = 0
 
