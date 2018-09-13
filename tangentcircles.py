@@ -6,7 +6,7 @@ Sources: W Tucker
 """
 
 from ggmath import MathApp, Circle
-from math import  acos, pi, cos, sin, abs
+from math import  acos, pi, cos, sin
 
 # angle between circles n and n+1 (one-based), shrink factor "a",
 th = lambda n, a: acos(((1+a**(n+1))**2+(1+a**n)**2-(a**(n+1)+a**n)**2)/(2*(1+a**(n+1))*(1+a**n)))
