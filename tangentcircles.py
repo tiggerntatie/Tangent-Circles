@@ -41,7 +41,7 @@ def optimize(n, opt, guess1, guess2):
     return c
 
 
-circleqty = 7
+circleqty = 30
 
 print(optimize(circleqty, opt, .9, .99))
 
