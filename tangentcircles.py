@@ -43,7 +43,7 @@ def optimize(n, opt, guess1, guess2):
 
 circleqty = 7
 
-#print(optimize(circleqty, opt, .9, .99))
+print(optimize(circleqty, opt, .9, .99))
 
 
 a = 0.9357
