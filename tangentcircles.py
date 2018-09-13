@@ -59,7 +59,7 @@ for n in range(1, circleqty+1):
     center = pos(n, a, r)
     Circle(center, r*a**(n+1))
 
-print(thtot(circleqty, a) + thlast(circleqty, a))
+print(thtot(circleqty, a) + thlast(circleqty, a) - 2*pi)
 
 
 app = MathApp()
