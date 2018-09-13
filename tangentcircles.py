@@ -6,7 +6,7 @@ Sources: W Tucker
 """
 
 from ggmath import MathApp, Circle
-from math import  acos, pi, cos, sin
+from math import  acos, pi, cos, sin, abs
 
 # angle between circles n and n+1 (one-based), shrink factor "a",
 th = lambda n, a: acos(((1+a**(n+1))**2+(1+a**n)**2-(a**(n+1)+a**n)**2)/(2*(1+a**(n+1))*(1+a**n)))
@@ -27,14 +27,13 @@ def pos(n, a, r):
     return (r*cos(angle), r*sin(angle))
 
 def opt(n, a):
-    return thtot(circleqty, a) + thlast(circleqty, a) - 2*pi
+    return thtot(n, a) + thlast(n, a) - 2*pi
 
 def optimize(n, opt, guess1, guess2):
     a = guess1
     b = guess2
-    c = b
-    val = 0
-    while c > 0.0001:
+    val = 1
+    while abs(val) > 0.0001:
         c = (a*opt(n,b)-b*opt(n,a))/(opt(n,b)-opt(n,a))
         a = b
         b = c
@@ -47,7 +46,7 @@ circleqty = 7
 #print(optimize(circleqty, opt, .9, .99))
 
 
-a = 0.9471
+a = 0.9357
 r = 0.5
 angle = 0
 
