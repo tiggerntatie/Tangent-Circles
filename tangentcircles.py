@@ -7,7 +7,7 @@ new stuff
 """
 
 from ggmath import MathApp, Circle
-from math import  acos, pi, cos, sin
+from math import  acos, pi, cos, sin, sqrt
 
 # angle between child circles n and n+1 (one-based), shrink factor "a",
 theta = lambda n, a: acos(((1+a**(n+1))**2+(1+a**n)**2-(a**(n+1)+a**n)**2)/(2*(1+a**(n+1))*(1+a**n)))
@@ -30,6 +30,9 @@ def pos(n, a, r):
 # Angle sum formula, should be zero when solution is found
 opt = lambda n, a: thetatot(n, a) + thetalast(n, a) - 2*pi
 
+# distance between two points
+distance = lambda p1, p2: sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)
+
 # Optimizer for a given number of child circles (n). Function to 
 # optimize (func), and two initial guesses (a and b). Optimizer will seek
 # a value of shrink factor that minimizes func (to less than 1E-12)
@@ -40,6 +43,7 @@ def optimize(n, func, a, b):
         na = func(n,a)
         b, a = (a*nb-b*na)/(nb-na), b
     return b
+
 
 
 circleqty = int(input("How many circles shall I show? "))
@@ -54,10 +58,18 @@ r = 0.5
 # draw the base circle
 Circle((0,0), r)
 
-# draw the children
-for n in range(1, circleqty+1):
-    center = pos(n, a, r)
-    Circle(center, r*a**n)
+# generate a list of (center, radius) tuples
+circles = [(pos(n, a, r), r*a**n) for n in range(1, circleqty+1)]
+
+# check for overlap on penultimate circle: compare center distance to radius sum
+centersdistance = distance(circles[0][0], circles[circleqty-1][0])
+radiussum = circles[0][1]+circles[circleqty-1][1]
+if centersdistance >= radiussum:
+    # draw the children
+    for c in circles:
+        Circle(c[0], c[1])
+else:
+    print("I can't display {} circles without overlapping any.".format(circleqty))
 
 # MathApp will handle the drawing and UI 
 app = MathApp()
