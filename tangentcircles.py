@@ -28,7 +28,7 @@ def pos(n, a, r):
     return (r*cos(angle), r*sin(angle))
 
 # Angle sum formula, should be zero when solution is found
-opt = lambda n, a: thtot(n, a) + thlast(n, a) - 2*pi
+opt = lambda n, a: thetatot(n, a) + thetalast(n, a) - 2*pi
 
 # Optimizer for a given number of child circles (n). Function to 
 # optimize (func), and two initial guesses (a and b). Optimizer will seek
