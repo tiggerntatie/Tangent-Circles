@@ -48,7 +48,7 @@ if __name__ == "__main__":
     
     # Figure out the necessary scale factor for the number of circles
     a = optimize(circleqty, opt, .9, .99)
-    print("The scale factor for {} circles is {f}".format(circleqty, a))
+    print("The scale factor for {} circles is {:.6}".format(circleqty, a))
     
     # base circle radius, logical units
     r = 0.5
