@@ -24,7 +24,7 @@ thetatot = lambda n, a: 0 if n == 1 else theta(n-1,a) + thetatot(n-1,a)
 # position of center of nth child circle, shrink factor a, base circle radius r
 def pos(n, a, r):
     r = d(n, a, r)  # get distance to center
-    angle = thtot(n,a)  # angle to center
+    angle = thetatot(n,a)  # angle to center
     return (r*cos(angle), r*sin(angle))
 
 # Angle sum formula, should be zero when solution is found
