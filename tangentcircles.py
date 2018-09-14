@@ -50,7 +50,6 @@ circleqty = int(input("How many circles shall I show? "))
 
 # Figure out the necessary scale factor for the number of circles
 a = optimize(circleqty, opt, .9, .99)
-print("The scale factor for {} circles is {:.6}".format(circleqty, a))
 
 # base circle radius, logical units
 r = 0.5
@@ -61,8 +60,8 @@ circles = [(pos(n, a, r), r*a**n) for n in range(1, circleqty+1)]
 # check for overlap on penultimate circle: compare center distance to radius sum
 centersdistance = distance(circles[0][0], circles[circleqty-2][0])
 radiussum = circles[0][1]+circles[circleqty-2][1]
-print (centersdistance, radiussum)
 if centersdistance >= radiussum:
+    print("The scale factor for {} circles is {:.6}".format(circleqty, a))
     # draw the base circle
     Circle((0,0), r)
     # draw the children
