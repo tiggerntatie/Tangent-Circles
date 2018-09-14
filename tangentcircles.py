@@ -32,7 +32,7 @@ opt = lambda n, a: thetatot(n, a) + thetalast(n, a) - 2*pi
 
 # Optimizer for a given number of child circles (n). Function to 
 # optimize (func), and two initial guesses (a and b). Optimizer will seek
-# a value of shrink factor that minimizes output of func (to less than 1E-12)
+# a value of shrink factor that minimizes func (to less than 1E-12)
 def optimize(n, func, a, b):
     nb = func(n,b)
     while abs(nb) > 1E-12:
@@ -42,24 +42,24 @@ def optimize(n, func, a, b):
     return b
 
 
-
-circleqty = int(input("How many circles shall I show? "))
-
-# Figure out scale factor for given number of circles
-a = optimize(circleqty, opt, .9, .99)
-print("The scale factor for {} circles is {}".format(circleqty, a))
-
-# base circle radius, logical units
-r = 0.5
-
-# draw the base circle
-Circle((0,0), r)
-
-# draw the children
-for n in range(1, circleqty+1):
-    center = pos(n, a, r)
-    Circle(center, r*a**n)
-
-
-app = MathApp()
-app.run()
+if __name__ == "__main__":
+    circleqty = int(input("How many circles shall I show? "))
+    
+    # Figure out scale factor for given number of circles
+    a = optimize(circleqty, opt, .9, .99)
+    print("The scale factor for {} circles is {}".format(circleqty, a))
+    
+    # base circle radius, logical units
+    r = 0.5
+    
+    # draw the base circle
+    Circle((0,0), r)
+    
+    # draw the children
+    for n in range(1, circleqty+1):
+        center = pos(n, a, r)
+        Circle(center, r*a**n)
+    
+    
+    app = MathApp()
+    app.run()
