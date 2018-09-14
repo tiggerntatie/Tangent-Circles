@@ -9,32 +9,35 @@ new stuff
 from ggmath import MathApp, Circle
 from math import  acos, pi, cos, sin
 
-# angle between circles n and n+1 (one-based), shrink factor "a",
-th = lambda n, a: acos(((1+a**(n+1))**2+(1+a**n)**2-(a**(n+1)+a**n)**2)/(2*(1+a**(n+1))*(1+a**n)))
+# angle between child circles n and n+1 (one-based), shrink factor "a",
+theta = lambda n, a: acos(((1+a**(n+1))**2+(1+a**n)**2-(a**(n+1)+a**n)**2)/(2*(1+a**(n+1))*(1+a**n)))
 
-#angle between circle n and 1 (last to first) (one-based), shrink factor "a"
-thlast = lambda n, a: acos(((1+a)**2+(1+a**n)**2-(a+a**n)**2)/(2*(1+a)*(1+a**n)))
+#angle between child circles n and 1 (last to first) (one-based), shrink factor "a"
+thetalast = lambda n, a: acos(((1+a)**2+(1+a**n)**2-(a+a**n)**2)/(2*(1+a)*(1+a**n)))
 
-# distance to center of nth (one-based) circle, shrink factor "a", base circle radius r
+# distance to center of nth (one-based) child circle, shrink factor "a", base circle radius r
 d = lambda n, a, r: r*(1 + a**n)
 
-# total angle for center of nth circle (recursive)
-thtot = lambda n, a: 0 if n == 1 else th(n-1,a) + thtot(n-1,a)
+# total angle for center of nth child circle (recursive)
+thetatot = lambda n, a: 0 if n == 1 else theta(n-1,a) + thetatot(n-1,a)
 
-# position of center of nth circle, shrink factor a, base circle radius r
+# position of center of nth child circle, shrink factor a, base circle radius r
 def pos(n, a, r):
     r = d(n, a, r)  # get distance to center
     angle = thtot(n,a)  # angle to center
     return (r*cos(angle), r*sin(angle))
 
-def opt(n, a):
-    return thtot(n, a) + thlast(n, a) - 2*pi
+# Angle sum formula, should be zero when solution is found
+opt = lambda n, a: thtot(n, a) + thlast(n, a) - 2*pi
 
-def optimize(n, opt, a, b):
-    nb = opt(n,b)
+# Optimizer for a given number of child circles (n). Function to 
+# optimize (func), and two initial guesses (a and b). Optimizer will seek
+# a value of shrink factor that minimizes output of func (to less than 1E-12)
+def optimize(n, func, a, b):
+    nb = func(n,b)
     while abs(nb) > 1E-12:
-        nb = opt(n,b)
-        na = opt(n,a)
+        nb = func(n,b)
+        na = func(n,a)
         b, a = (a*nb-b*na)/(nb-na), b
     return b
 
