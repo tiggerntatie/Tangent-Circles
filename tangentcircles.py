@@ -64,6 +64,7 @@ circles = [(pos(n, a, r), r*a**n) for n in range(1, circleqty+1)]
 # check for overlap on penultimate circle: compare center distance to radius sum
 centersdistance = distance(circles[0][0], circles[circleqty-1][0])
 radiussum = circles[0][1]+circles[circleqty-1][1]
+print (centersdistance, radiussum)
 if centersdistance >= radiussum:
     # draw the children
     for c in circles:
