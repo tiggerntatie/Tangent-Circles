@@ -43,11 +43,12 @@ def optimize(n, func, a, b):
 
 
 if __name__ == "__main__":
+    
     circleqty = int(input("How many circles shall I show? "))
     
-    # Figure out scale factor for given number of circles
+    # Figure out the necessary scale factor for the number of circles
     a = optimize(circleqty, opt, .9, .99)
-    print("The scale factor for {} circles is {}".format(circleqty, a))
+    print("The scale factor for {} circles is {f}".format(circleqty, a))
     
     # base circle radius, logical units
     r = 0.5
@@ -60,6 +61,6 @@ if __name__ == "__main__":
         center = pos(n, a, r)
         Circle(center, r*a**n)
     
-    
+    # MathApp will handle the drawing and UI 
     app = MathApp()
     app.run()
