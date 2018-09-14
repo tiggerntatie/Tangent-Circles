@@ -55,17 +55,16 @@ print("The scale factor for {} circles is {:.6}".format(circleqty, a))
 # base circle radius, logical units
 r = 0.5
 
-# draw the base circle
-Circle((0,0), r)
-
 # generate a list of (center, radius) tuples
 circles = [(pos(n, a, r), r*a**n) for n in range(1, circleqty+1)]
 
 # check for overlap on penultimate circle: compare center distance to radius sum
-centersdistance = distance(circles[0][0], circles[circleqty-1][0])
-radiussum = circles[0][1]+circles[circleqty-1][1]
+centersdistance = distance(circles[0][0], circles[circleqty-2][0])
+radiussum = circles[0][1]+circles[circleqty-2][1]
 print (centersdistance, radiussum)
 if centersdistance >= radiussum:
+    # draw the base circle
+    Circle((0,0), r)
     # draw the children
     for c in circles:
         Circle(c[0], c[1])
